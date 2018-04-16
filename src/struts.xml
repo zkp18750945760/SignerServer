@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <constant name="struts.i18n.encoding" value="UTF-8"/>
+    <constant name="struts.locale" value="UTF-8"/>
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+    <constant name="struts.devMode" value="true"/>
+
+    <package name="action.js" extends="struts-default">
+        <action name="fileUpload" class="action.js.UploadMeetingAction">
+            <!-- 配置文件上传拦截器，用于限定上传文件的大小和类型 -->
+            <interceptor-ref name="fileUpload">
+                <!-- 允许上传的文件的类型 -->
+                <param name="allowedType">
+                    pdf
+                </param>
+                <!-- 允许上传的文件的大小 -->
+                <param name="maximumSize">10240000</param>
+            </interceptor-ref>
+            <interceptor-ref name="defaultStack"/>
+
+            <result name="success">/uploadResult.jsp</result>
+            <result name="input">/failure.jsp</result>
+        </action>
+    </package>
+
+    <package name="default" namespace="/" extends="struts-default">
+        <action name="Login" class="action.android.MeAction" method="login"/>
+        <action name="UploadHeadIcon" class="action.android.MeAction" method="uploadHeadIcon"/>
+        <action name="GetHeadIcons" class="action.android.MeAction" method="getHeadIcons"/>
+        <action name="UnBindDevice" class="action.android.MeAction" method="unBindDevice"/>
+        <action name="BindDevice" class="action.android.MeAction" method="bindDevice"/>
+        <action name="ModifyPassword" class="action.android.MeAction" method="modifyPassword"/>
+        <action name="GetActivities" class="action.android.MeAction" method="getActivities"/>
+        <action name="ApplyActivities" class="action.android.MeAction" method="applyActivities"/>
+        <action name="CancelApplyActivities" class="action.android.MeAction" method="cancelApplyActivities"/>
+        <action name="GetVolunteers" class="action.android.MeAction" method="getVolunteers"/>
+        <action name="ApplyVolunteers" class="action.android.MeAction" method="applyVolunteers"/>
+        <action name="CancelApplyVolunteers" class="action.android.MeAction" method="cancelApplyVolunteers"/>
+        <action name="GetAllSchedule" class="action.android.MeAction" method="getAllSchedule"/>
+        <action name="GetBanners" class="action.android.MeAction" method="getBanners"/>
+        <action name="GetSignEvents" class="action.android.MeAction" method="getSignEvents"/>
+        <action name="GetEventsSponsorSignStatus" class="action.android.MeAction" method="getEventsSponsorSignStatus"/>
+        <action name="SponsorSign" class="action.android.MeAction" method="sponsorSign"/>
+        <action name="Sign" class="action.android.MeAction" method="sign"/>
+        <action name="GetSignedHeadIcons" class="action.android.MeAction" method="getSignedHeadIcons"/>
+
+
+        <action name="UploadLedger" class="action.android.MeAction" method="uploadLedger"/>
+        <action name="GetSecondLedger" class="action.android.MeAction" method="getSecondLedger"/>
+        <action name="GetUpdateInfo" class="action.android.MeAction" method="getUpdateInfo"/>
+        <action name="UploadCrashLogcat" class="action.android.MeAction" method="uploadCrashLogcat"/>
+        <action name="GetCourse" class="action.android.MeAction" method="getCourse"/>
+        <action name="GetSignRecord" class="action.android.MeAction" method="getSignRecord"/>
+        <action name="GetFirstLedger" class="action.android.MeAction" method="getFirstLedger"/>
+        <action name="GetDiscussion" class="action.android.MeAction" method="getDiscussion"/>
+        <action name="UpdateDiscussionRead" class="action.android.MeAction" method="updateDiscussionRead"/>
+        <action name="UploadASQC" class="action.android.MeAction" method="uploadASQC"/>
+
+        <action name="GetClazzStudents" class="action.android.MeAction" method="getClazzStudents"/>
+        <action name="ApplyMutual" class="action.android.MeAction" method="applyMutual"/>
+        <action name="CancelMutual" class="action.android.MeAction" method="cancelMutual"/>
+        <action name="GetMutualNum" class="action.android.MeAction" method="getMutualNum"/>
+        <action name="GroupMutual" class="action.android.MeAction" method="groupMutual"/>
+        <action name="GetGroupMutualStatus" class="action.android.MeAction" method="getGroupMutualStatus"/>
+        <action name="IsMutualMembers" class="action.android.MeAction" method="isMutualMembers"/>
+        <action name="IsMutualFinish" class="action.android.MeAction" method="isMutualFinish"/>
+        <action name="GetMutualTask" class="action.android.MeAction" method="getMutualTask"/>
+        <action name="UploadMutual" class="action.android.MeAction" method="uploadMutual"/>
+        <action name="GetASCQScore" class="action.android.MeAction" method="getASCQScore"/>
+        <action name="ConfirmASCQ" class="action.android.MeAction" method="confirmASCQ"/>
+        <action name="ModifyASCQ" class="action.android.MeAction" method="modifyASCQ"/>
+        <action name="GetMutualRecord" class="action.android.MeAction" method="getMutualRecord"/>
+        <action name="GetMutualIDs" class="action.android.MeAction" method="getMutualIDs"/>
+        <action name="GetModifyASCQ" class="action.android.MeAction" method="getModifyASCQ"/>
+        <action name="UpdateASCQ" class="action.android.MeAction" method="updateASCQ"/>
+
+    </package>
+
+</struts>

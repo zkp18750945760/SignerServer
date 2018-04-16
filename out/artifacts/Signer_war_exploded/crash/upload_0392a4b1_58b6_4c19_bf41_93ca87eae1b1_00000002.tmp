@@ -1,0 +1,65 @@
+
+2018-04-02 15:35:31
+SUPPORTED_64_BIT_ABIS=[Ljava.lang.String;@5381125
+versionCode=2
+BOARD=QC_Reference_Phone
+BOOTLOADER=unknown
+TYPE=user
+ID=N2G47H
+TIME=1516210471000
+BRAND=ZUK
+TAG=Build
+HARDWARE=qcom
+SERIAL=37f8456a
+SUPPORTED_ABIS=[Ljava.lang.String;@59560ab
+CPU_ABI=arm64-v8a
+IS_DEBUGGABLE=true
+RADIO=unknown
+MANUFACTURER=ZUK
+IS_EMULATOR=false
+SUPPORTED_32_BIT_ABIS=[Ljava.lang.String;@d10611c
+TAGS=release-keys
+CPU_ABI2=
+UNKNOWN=unknown
+PERMISSIONS_REVIEW_REQUIRED=false
+USER=builder
+FINGERPRINT=xiaomi/z2_row/z2_row:7.1.2/N2G47H/8.1.18:user/release-keys
+HOST=c3-miui-ota-bd67.bj
+versionName=1.0.0
+PRODUCT=z2_row
+DISPLAY=Z2Pro_MIUI9_8.1.18_Art_Chen
+MODEL=ZUK Z2121
+DEVICE=z2_row
+java.lang.RuntimeException: Error receiving broadcast Intent { act=android.net.wifi.STATE_CHANGE flg=0x4000010 (has extras) } in com.zhoukp.signer.module.network.NetworkConnectChangedReceiver@d070524
+	at android.app.LoadedApk$ReceiverDispatcher$Args.run(LoadedApk.java:1138)
+	at android.os.Handler.handleCallback(Handler.java:754)
+	at android.os.Handler.dispatchMessage(Handler.java:95)
+	at android.os.Looper.loop(Looper.java:163)
+	at android.app.ActivityThread.main(ActivityThread.java:6379)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:904)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:794)
+Caused by: android.view.WindowManager$BadTokenException: Unable to add window -- token null is not for an application
+	at android.view.ViewRootImpl.setView(ViewRootImpl.java:703)
+	at android.view.WindowManagerGlobal.addView(WindowManagerGlobal.java:347)
+	at android.view.WindowManagerImpl.addView(WindowManagerImpl.java:94)
+	at android.app.Dialog.show(Dialog.java:332)
+	at com.zhoukp.signer.module.network.OpenNetHelper.showWifiDlg(OpenNetHelper.java:56)
+	at com.zhoukp.signer.module.network.NetworkConnectChangedReceiver.onReceive(NetworkConnectChangedReceiver.java:67)
+	at android.app.LoadedApk$ReceiverDispatcher$Args.run(LoadedApk.java:1128)
+	... 7 more
+android.view.WindowManager$BadTokenException: Unable to add window -- token null is not for an application
+	at android.view.ViewRootImpl.setView(ViewRootImpl.java:703)
+	at android.view.WindowManagerGlobal.addView(WindowManagerGlobal.java:347)
+	at android.view.WindowManagerImpl.addView(WindowManagerImpl.java:94)
+	at android.app.Dialog.show(Dialog.java:332)
+	at com.zhoukp.signer.module.network.OpenNetHelper.showWifiDlg(OpenNetHelper.java:56)
+	at com.zhoukp.signer.module.network.NetworkConnectChangedReceiver.onReceive(NetworkConnectChangedReceiver.java:67)
+	at android.app.LoadedApk$ReceiverDispatcher$Args.run(LoadedApk.java:1128)
+	at android.os.Handler.handleCallback(Handler.java:754)
+	at android.os.Handler.dispatchMessage(Handler.java:95)
+	at android.os.Looper.loop(Looper.java:163)
+	at android.app.ActivityThread.main(ActivityThread.java:6379)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:904)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:794)
