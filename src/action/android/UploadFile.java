@@ -4,10 +4,7 @@ import action.android.bean.ASCQBean;
 import com.alibaba.fastjson.JSON;
 import db.DBHelper;
 import org.apache.struts2.ServletActionContext;
-import utils.FileUtils;
-import utils.SchoolYearUtils;
-import utils.StringUtils;
-import utils.TimeUtils;
+import utils.*;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,17 +27,18 @@ public class UploadFile {
     /**
      * 上传第二台账
      *
-     * @param month 月份
-     * @param file  文件
+     * @param month              月份
+     * @param file               文件
+     * @param uploadFileFileName
      * @return 200->成功 101->表格为空 102->文件IO错误 103->数据库IO错误
      */
-    public static String uploadLedger(int month, File file) {
+    public static String uploadLedger(int month, File file, String uploadFileFileName) {
         HashMap<String, Object> hashMap = new HashMap<>();
 
         //首先将文件存入对应的文件夹中
         try {
-            String path = FileUtils.uploadFile(file, file.getName(), "/files");
-            path = new File(path, file.getName()).getAbsolutePath();
+            String path = FileUtils.uploadFile(file, uploadFileFileName, "/files");
+            path = new File(path, uploadFileFileName).getAbsolutePath();
             FileInputStream inputStream = new FileInputStream(path);
 
             String[][] values = FileUtils.readXlsFiles(inputStream, 3, 1);
@@ -234,10 +232,11 @@ public class UploadFile {
     /**
      * 上传错误日志到服务器
      *
-     * @param logcat 错误日志TXT文件
+     * @param logcat             错误日志TXT文件
+     * @param uploadFileFileName
      * @return 200->成功 101->数据库IO错误 102->文件为空 103->IO错误
      */
-    public static String uploadCrashLogcat(File logcat) {
+    public static String uploadCrashLogcat(File logcat, String uploadFileFileName) {
         HashMap<String, Object> hashMap = new HashMap<>();
         try {
             String sql = "select table_name from information_schema.tables where table_name = 'logcat'";
@@ -262,12 +261,12 @@ public class UploadFile {
                 dbHelper.close();
             }
             //表格已经存在，直接将文件放入对应的位置并插入数据到数据库中
-            String path = FileUtils.uploadFile(logcat, logcat.getName(), "/crash");
-            path = new File(path, logcat.getName()).getAbsolutePath();
+            String path = FileUtils.uploadFile(logcat, uploadFileFileName, "/crash");
+            path = new File(path, uploadFileFileName).getAbsolutePath();
             FileInputStream inputStream = new FileInputStream(path);
 
             sql = "insert into logcat (uploadTime,fileUrl) values ('"
-                    + TimeUtils.getCurrentTime() + "','" + ("/crash/" + logcat.getName()) + "')";
+                    + TimeUtils.getCurrentTime() + "','" + ("/crash/" + uploadFileFileName) + "')";
             dbHelper = new DBHelper(sql);
             dbHelper.pst.executeUpdate();
             dbHelper.close();
@@ -536,15 +535,23 @@ public class UploadFile {
      * @param clazz  班级
      * @return 200->成功 101->还没上传课表 102->数据库IO错误
      */
-    public static String getFirstLedger(String userId, String grade, String major, String clazz) {
+    public static String getFirstLedger(String userId, String grade, String major, String clazz, String schoolYear, String term) {
         HashMap<String, Object> hashMap = new HashMap<>();
         List<HashMap> jsonObjects = new ArrayList<>();
+
+//        String termCode = SchoolYearUtils.getGradeCode(grade)
+//                + SchoolYearUtils.getMajorCode(major)
+//                + SchoolYearUtils.getClassCode(clazz)
+//                + SchoolYearUtils.getTermCodeByMonth(userId,
+//                Integer.parseInt(TimeUtils.getCurrentYear()), TimeUtils.getMonthOfYear());
 
         String termCode = SchoolYearUtils.getGradeCode(grade)
                 + SchoolYearUtils.getMajorCode(major)
                 + SchoolYearUtils.getClassCode(clazz)
-                + SchoolYearUtils.getTermCodeByMonth(userId,
-                Integer.parseInt(TimeUtils.getCurrentYear()), TimeUtils.getMonthOfYear());
+                + SchoolYearUtils.getTermCode(SchoolYearUtils.getGradeCode(grade),
+                schoolYear, term).get("termCode");
+
+        System.out.println(termCode);
 
         try {
             //先查看课表存不存在
@@ -634,13 +641,143 @@ public class UploadFile {
         }
     }
 
+
+    /**
+     * 上传班长支书会议记录
+     *
+     * @param file               文件(pdf格式)
+     * @param uploadFileFileName 文件名
+     * @param userId             用户ID
+     * @param schoolYear         学年
+     * @param term               学期
+     * @param content            主题
+     * @param Abstract           摘要
+     * @param userGrade          年级
+     * @param userMajor          专业
+     * @param userClazz          班级
+     * @return 200->成功 101->服务器IO错误 102->文件转换失败
+     */
+    public static String uploadDiscussion(File file, String uploadFileFileName, String userId, String schoolYear,
+                                          String term, String content, String Abstract,
+                                          String userGrade, String userMajor, String userClazz) {
+        HashMap<String, Object> hashMap = new HashMap<>();
+
+        try {
+            String sql = "select table_name from information_schema.tables where table_name = 'Discussion'";
+            DBHelper dbHelper = new DBHelper(sql);
+            int tabCount = 0;
+            ResultSet resultSet = dbHelper.pst.executeQuery();
+
+            while (resultSet.next()) {
+                tabCount++;
+            }
+            resultSet.close();
+            dbHelper.close();
+
+            if (tabCount == 0) {
+                sql = "create table Discussion(disContent varchar(45) not null," +
+                        "disDate char(10) not null," +
+                        "disAbstract varchar(60) not null," +
+                        "disRead int default '0'," +
+                        "disFileUrl varchar(70) not null," +
+                        "uploadTime varchar(19) not null," +
+                        "schoolYear varchar(15) not null," +
+                        "term char(1) not null," +
+                        "stuId char(11) not null," +
+                        "grade varchar(6) not null," +
+                        "major varchar(20) not null," +
+                        "clazz varchar(3) not null," +
+                        "foreign key (stuId) references students(stuId)," +
+                        "primary key (disContent,disDate))";
+
+                dbHelper = new DBHelper(sql);
+                dbHelper.pst.executeUpdate();
+                dbHelper.close();
+
+                //创建阅读记录表
+                sql = "create table AlreadyRead(stuId char(11) not null," +
+                        "content varchar(45) not null," +
+                        "contentDate char(10) not null," +
+                        "foreign key (stuId) references students(stuId)," +
+                        "foreign key (content,contentDate) references Discussion(disContent,disDate))";
+
+                dbHelper = new DBHelper(sql);
+                dbHelper.pst.executeUpdate();
+                dbHelper.close();
+            }
+
+            //支书会议表已经存在
+            //表格已经存在，直接将文件放入对应的位置并插入数据到数据库中
+            String path = FileUtils.uploadFile(file, uploadFileFileName, "/pdf");
+
+            if (uploadFileFileName.contains("doc")) {
+                path = Word2Pdf.word2Pdf(path + "\\" + uploadFileFileName, path + "\\" +
+                        uploadFileFileName.replace(uploadFileFileName.substring(uploadFileFileName.lastIndexOf(".") + 1), "pdf"));
+            } else {
+                path = path + "\\" + uploadFileFileName;
+            }
+
+            if (!path.equals("")) {
+                path = new File(path).getAbsolutePath();
+                FileInputStream inputStream = new FileInputStream(path);
+
+                sql = "replace into Discussion(disContent,disDate,disAbstract,disFileUrl,uploadTime,schoolYear,term,stuId,grade,major,clazz) " +
+                        "values ('" + content + "','"
+                        + TimeUtils.getCurrentDate() + "','"
+                        + Abstract + "','"
+                        + ("/pdf/" + uploadFileFileName.replace(uploadFileFileName.substring(uploadFileFileName.lastIndexOf(".") + 1), "pdf")) + "','"
+                        + TimeUtils.getCurrentTime() + "'," +
+                        "'" + schoolYear + "'," +
+                        "'" + term + "'," +
+                        "'" + userId + "'," +
+                        "'" + userGrade + "'," +
+                        "'" + userMajor + "'," +
+                        "'" + userClazz + "')";
+
+                dbHelper = new DBHelper(sql);
+                dbHelper.pst.executeUpdate();
+                dbHelper.close();
+
+                hashMap.put("status", 200);
+                hashMap.put("time", TimeUtils.getCurrentTime());
+                return JSON.toJSONString(hashMap);
+            } else {
+                hashMap.put("status", 102);
+                hashMap.put("time", TimeUtils.getCurrentTime());
+                return JSON.toJSONString(hashMap);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            hashMap.put("status", 101);
+            hashMap.put("time", TimeUtils.getCurrentTime());
+            return JSON.toJSONString(hashMap);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            hashMap.put("status", 101);
+            hashMap.put("time", TimeUtils.getCurrentTime());
+            return JSON.toJSONString(hashMap);
+        } catch (IOException e) {
+            e.printStackTrace();
+            hashMap.put("status", 101);
+            hashMap.put("time", TimeUtils.getCurrentTime());
+            return JSON.toJSONString(hashMap);
+        }
+    }
+
     /**
      * 获取支书会议列表
      *
-     * @param userId 用户ID
+     * @param userId     用户ID
+     * @param userGrade  年级
+     * @param userMajor  专业
+     * @param userClazz  班级
+     * @param schoolYear 学年
+     * @param term       学期
      * @return 200->成功 101->还没有支书会议记录 102->数据库IO错误
      */
-    public static String getDiscussion(String userId) {
+    public static String getDiscussion(String userId, String userGrade, String userMajor,
+                                       String userClazz, String schoolYear, String term) {
+
         HashMap<String, Object> hashMap = new HashMap<>();
         List<HashMap> jsonObjects = new ArrayList<>();
 
@@ -664,7 +801,10 @@ public class UploadFile {
                 return JSON.toJSONString(hashMap);
             } else {
                 //支书会议表格存在
-                sql = "select * from Discussion";
+                sql = "select * from Discussion where grade = '" + userGrade + "' and " +
+                        "major = '" + userMajor + "' and " +
+                        "clazz = '" + userClazz + "'";
+
                 dbHelper = new DBHelper(sql);
                 resultSet = dbHelper.pst.executeQuery();
                 DBHelper helper;

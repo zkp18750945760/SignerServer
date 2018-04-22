@@ -9,7 +9,7 @@ public class DBHelper {
     /**
      * 链接地址
      */
-    public static final String url = "jdbc:mysql://127.0.0.1/Signer?characterEncoding=utf8&useSSL=true&autoReconnect=true&failOverReadOnly=false&maxReconnects=2000";
+    public static final String url = "jdbc:mysql://127.0.0.1/SignerZKP?characterEncoding=utf8&useSSL=true&autoReconnect=true&failOverReadOnly=false&maxReconnects=2000";
     /**
      * 连接名称
      */
@@ -21,7 +21,7 @@ public class DBHelper {
     /**
      * 数据库用户名对应的密码
      */
-    public static final String password = "88888888";
+    public static final String password = "123456";
 
     public Connection conn = null;
     public PreparedStatement pst = null;

@@ -6,10 +6,42 @@
     </artifacts-to-build>
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/action/android/UploadFile.java" line="304" />
+    <bookmark url="file://$PROJECT_DIR$/src/action/android/UploadFile.java" line="303" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b321f3bd-02df-4070-920c-d271d70b7369" name="Default" comment="" />
+    <list default="true" id="b321f3bd-02df-4070-920c-d271d70b7369" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/utils/Word2Pdf.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/WEB-INF/lib/jacob.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Signer_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Signer_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/structs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/structs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Signer_war_exploded/crash/upload_0392a4b1_58b6_4c19_bf41_93ca87eae1b1_00000001.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Signer_war_exploded/crash/upload_0392a4b1_58b6_4c19_bf41_93ca87eae1b1_00000002.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Signer_war_exploded/crash/upload_0392a4b1_58b6_4c19_bf41_93ca87eae1b1_00000003.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Signer_war_exploded/crash/upload_0392a4b1_58b6_4c19_bf41_93ca87eae1b1_00000004.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Signer_war_exploded/crash/upload_0392a4b1_58b6_4c19_bf41_93ca87eae1b1_00000005.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Signer_war_exploded/crash/upload_0bd7dd3d_e1a6_4039_9835_f03d1cdf5a7d_00000000.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Signer_war_exploded/crash/upload_2c7787e6_9f52_4326_b1f1_1535d18d3e88_00000000.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Signer_war_exploded/crash/upload_338ea2c0_c46e_4fea_af87_e5c082df01b3_00000000.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Signer_war_exploded/crash/upload_a10bd7e9_2b68_422d_a899_cd0cb3bdc21a_00000000.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Signer_war_exploded/crash/upload_a8674b7e_2f3f_4be2_9ef3_50d64bae825d_00000000.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Signer_war_exploded/crash/upload_bd45321c_bc71_4b23_be53_ad8f951b659a_00000000.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Signer_war_exploded/crash/upload_bd45321c_bc71_4b23_be53_ad8f951b659a_00000001.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Signer_war_exploded/crash/upload_ccca49a5_b391_42ac_9c0e_a1b14037f6a7_00000001.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Signer_war_exploded/crash/upload_edae9232_aea1_49d9_9abf_4aa881f77deb_00000000.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Signer_war_exploded/files/upload_67fe0615_a344_4aba_bcc2_226d91a79001_00000000.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Signer_war_exploded/pdf/【境内生】1425122042-周开平.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Signer_war_exploded/pdf/就业展望.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Signer_war_exploded/pdf/简历_170914.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/action/android/MeAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/action/android/MeAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/action/android/UploadFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/action/android/UploadFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/DBHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/struts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/struts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/action/android/MeAction.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/action/android/MeAction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/action/android/UploadFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/action/android/UploadFile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/db/DBHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/db/DBHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/struts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/struts.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,19 +55,22 @@
       <file leaf-file-name="MeAction.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/action/android/MeAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="26088">
-              <caret line="1208" column="52" selection-start-line="1208" selection-start-column="52" selection-end-line="1208" selection-end-column="52" />
+            <state relative-caret-position="5544">
+              <caret line="338" column="5" selection-start-line="338" selection-start-column="5" selection-end-line="338" selection-end-column="5" />
+              <folding>
+                <element signature="e#2698#2699#0" expanded="true" />
+                <element signature="e#2758#2759#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ASCQ.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ASCQ.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/action/android/ASCQ.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1176">
-              <caret line="2145" column="8" selection-start-line="2145" selection-start-column="8" selection-end-line="2145" selection-end-column="8" />
+            <state relative-caret-position="315">
+              <caret line="2161" column="1" selection-start-line="2161" selection-start-column="1" selection-end-line="2161" selection-end-column="1" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="method#getClazzStudents#0;class#ASCQ#0" />
                 <element signature="method#applyMutual#0;class#ASCQ#0" />
                 <element signature="method#cancelMutual#0;class#ASCQ#0" />
@@ -51,27 +86,18 @@
                 <element signature="method#modifyASCQ#0;class#ASCQ#0" />
                 <element signature="method#getMutualRecord#0;class#ASCQ#0" />
                 <element signature="method#getMutualIDs#0;class#ASCQ#0" />
+                <element signature="method#getModifyASCQ#0;class#ASCQ#0" />
+                <element signature="method#updateASCQ#0;class#ASCQ#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UploadFile.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/action/android/UploadFile.java">
+      <file leaf-file-name="DBHelper.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/db/DBHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6480">
-              <caret line="991" column="46" selection-start-line="924" selection-start-column="12" selection-end-line="991" selection-end-column="46" />
-              <folding>
-                <element signature="method#uploadLedger#0;class#UploadFile#0" />
-                <element signature="method#getSecondLedger#0;class#UploadFile#0" />
-                <element signature="method#getUpdateInfo#0;class#UploadFile#0" />
-                <element signature="method#uploadCrashLogcat#0;class#UploadFile#0" />
-                <element signature="method#getCourse#0;class#UploadFile#0" />
-                <element signature="method#getSignRecord#0;class#UploadFile#0" />
-                <element signature="method#getFirstLedger#0;class#UploadFile#0" />
-                <element signature="method#getDiscussion#0;class#UploadFile#0" />
-                <element signature="method#updateDiscussionRead#0;class#UploadFile#0" />
-              </folding>
+            <state relative-caret-position="480">
+              <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -79,8 +105,8 @@
       <file leaf-file-name="struts.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/struts.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1848">
-              <caret line="77" column="32" selection-start-line="77" selection-start-column="22" selection-end-line="77" selection-end-column="32" />
+            <state relative-caret-position="1368">
+              <caret line="57" column="38" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -100,6 +126,9 @@
       <find>//</find>
     </findStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -109,7 +138,6 @@
         <option value="$PROJECT_DIR$/src/action/js/UploadCoursesInfoAction.java" />
         <option value="$PROJECT_DIR$/src/action/js/ChooseCoursesInfoAction.java" />
         <option value="$PROJECT_DIR$/out/artifacts/Signer_war_exploded/WEB-INF/classes/struts.xml" />
-        <option value="$PROJECT_DIR$/src/utils/FileUtils.java" />
         <option value="$PROJECT_DIR$/src/action/android/bean/ScheduleBean.java" />
         <option value="$PROJECT_DIR$/src/utils/SchoolYearBean.java" />
         <option value="$PROJECT_DIR$/src/action/js/UpdateBanersAction.java" />
@@ -122,12 +150,14 @@
         <option value="$PROJECT_DIR$/src/action/android/bean/ASQCBean.java" />
         <option value="$PROJECT_DIR$/src/action/android/bean/ASCQBean.java" />
         <option value="$PROJECT_DIR$/src/action/android/MeDB.java" />
-        <option value="$PROJECT_DIR$/src/action/android/UploadFile.java" />
-        <option value="$PROJECT_DIR$/src/struts.xml" />
         <option value="$PROJECT_DIR$/src/utils/aes/MD5.java" />
-        <option value="$PROJECT_DIR$/src/action/android/MeAction.java" />
         <option value="$PROJECT_DIR$/src/action/android/bean/UpdateASCQBean.java" />
         <option value="$PROJECT_DIR$/src/action/android/ASCQ.java" />
+        <option value="$PROJECT_DIR$/src/struts.xml" />
+        <option value="$PROJECT_DIR$/src/utils/Word2Pdf.java" />
+        <option value="$PROJECT_DIR$/src/utils/FileUtils.java" />
+        <option value="$PROJECT_DIR$/src/action/android/MeAction.java" />
+        <option value="$PROJECT_DIR$/src/action/android/UploadFile.java" />
         <option value="$PROJECT_DIR$/src/db/DBHelper.java" />
       </list>
     </option>
@@ -146,10 +176,10 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="221" />
-    <option name="y" value="9" />
-    <option name="width" value="1711" />
-    <option name="height" value="1100" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -174,20 +204,33 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="action" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="SignerServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SignerServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="action" type="462c0819:PsiDirectoryNode" />
+              <item name="android" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SignerServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SignerServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="db" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="AndroidView" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="if&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -196,11 +239,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Design\Server\SignerServer\web\WEB-INF\lib" />
       <recent name="E:\Design\Server\Signer\src\action\android\bean" />
       <recent name="E:\Design\Server\Signer\out\artifacts\Signer_war_exploded\pdf" />
       <recent name="E:\Design\Server\Signer\out\artifacts\Signer_war_exploded\files" />
       <recent name="E:\Design\Server\Signer\out\artifacts\Signer_war_exploded\banner" />
-      <recent name="E:\Design\Server\Signer\out\artifacts\Signer_war_exploded\imgs" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="utils" />
@@ -438,11 +481,21 @@
       <workItem from="1523864054423" duration="20000" />
       <workItem from="1523864098963" duration="1278000" />
       <workItem from="1523869994376" duration="15000" />
+      <workItem from="1524210114265" duration="4249000" />
+      <workItem from="1524220256167" duration="2728000" />
+      <workItem from="1524229732580" duration="1362000" />
+      <workItem from="1524292813849" duration="1235000" />
+      <workItem from="1524295638190" duration="6816000" />
+      <workItem from="1524307651034" duration="3767000" />
+      <workItem from="1524311678262" duration="1159000" />
+      <workItem from="1524317224658" duration="609000" />
+      <workItem from="1524375460216" duration="1432000" />
+      <workItem from="1524389542464" duration="87000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="230647000" />
+    <option name="totallyTimeSpent" value="254091000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -455,6 +508,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="5" />
       <window_info anchor="bottom" id="Event Log" order="0" side_tool="true" />
@@ -470,24 +524,24 @@
       <window_info id="UI Designer" order="2" />
       <window_info anchor="bottom" id="Debug" order="11" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="14" weight="0.32997763" />
+      <window_info anchor="bottom" id="Messages" order="2" weight="0.32885906" />
       <window_info anchor="right" id="Palette&#9;" order="1" />
       <window_info id="Image Layers" order="7" />
       <window_info anchor="bottom" id="Java Enterprise" order="3" weight="0.32997763" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Version Control" order="4" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="10" weight="0.81431764" />
+      <window_info anchor="bottom" id="Version Control" order="4" />
+      <window_info anchor="bottom" id="Run" order="10" weight="0.96864504" />
       <window_info anchor="bottom" id="Terminal" order="5" weight="0.32997763" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.1716418" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.17004265" />
       <window_info id="Web" order="3" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="4" />
       <window_info id="Favorites" order="4" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="2" weight="0.32885906" />
       <window_info anchor="bottom" id="Inspection" order="13" weight="0.4" />
       <window_info anchor="right" id="Commander" order="6" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="12" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="6" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="8" weight="0.32997763" />
+      <window_info anchor="bottom" id="Find" order="8" weight="0.32922733" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -506,41 +560,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/action/android/UploadFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1368">
-          <caret line="236" column="56" selection-start-line="236" selection-start-column="56" selection-end-line="236" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/struts.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1272">
-          <caret line="53" column="39" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/TimeUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3216">
-          <caret line="139" column="36" lean-forward="true" selection-start-line="139" selection-start-column="36" selection-end-line="139" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/TimeUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1800">
-          <caret line="107" column="25" selection-start-line="107" selection-start-column="25" selection-end-line="107" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/SchoolYearUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1704">
-          <caret line="102" column="25" selection-start-line="102" selection-start-column="25" selection-end-line="102" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/action/android/MeAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6552">
@@ -695,20 +714,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/FileUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/SchoolYearUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="178" column="22" selection-start-line="178" selection-start-column="22" selection-end-line="178" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/action/js/bean/CourseUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
@@ -751,49 +756,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/action/js/UploadStudentsInfoAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="521">
-          <caret line="62" column="25" lean-forward="true" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/aes/AesUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="15" column="22" lean-forward="true" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/action/android/MeDB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-696">
-          <caret line="30" column="59" selection-start-line="30" selection-start-column="59" selection-end-line="30" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/action/android/UploadFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6480">
-          <caret line="991" column="46" selection-start-line="924" selection-start-column="12" selection-end-line="991" selection-end-column="46" />
-          <folding>
-            <element signature="method#uploadLedger#0;class#UploadFile#0" />
-            <element signature="method#getSecondLedger#0;class#UploadFile#0" />
-            <element signature="method#getUpdateInfo#0;class#UploadFile#0" />
-            <element signature="method#uploadCrashLogcat#0;class#UploadFile#0" />
-            <element signature="method#getCourse#0;class#UploadFile#0" />
-            <element signature="method#getSignRecord#0;class#UploadFile#0" />
-            <element signature="method#getFirstLedger#0;class#UploadFile#0" />
-            <element signature="method#getDiscussion#0;class#UploadFile#0" />
-            <element signature="method#updateDiscussionRead#0;class#UploadFile#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/struts.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1848">
-          <caret line="77" column="32" selection-start-line="77" selection-start-column="22" selection-end-line="77" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -804,13 +770,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/action/android/MeAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26088">
-          <caret line="1208" column="52" selection-start-line="1208" selection-start-column="52" selection-end-line="1208" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/action/android/bean/UpdateASCQBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="501">
@@ -818,19 +777,110 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/db/DBHelper.java">
+    <entry file="file://$PROJECT_DIR$/out/artifacts/Signer_war_exploded/WEB-INF/classes/action/android/UploadFile.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="11" column="67" selection-start-line="11" selection-start-column="67" selection-end-line="11" selection-end-column="67" />
+        <state relative-caret-position="-9792" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/SchoolYearUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1656">
+          <caret line="71" column="26" selection-start-line="71" selection-start-column="26" selection-end-line="71" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/action/android/MeDB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="30" column="59" selection-start-line="30" selection-start-column="59" selection-end-line="30" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/struts.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1368">
+          <caret line="57" column="38" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/web/WEB-INF/lib/struts2-core-2.3.34.jar!/org/apache/struts2/dispatcher/Dispatcher.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4">
+          <caret line="447" selection-start-line="447" selection-end-line="447" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Program Files/Java/jdk1.8.0_162/src.zip!/java/io/FileInputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="91" column="11" selection-start-line="91" selection-start-column="11" selection-end-line="91" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/out/artifacts/Signer_war_exploded/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="15" column="41" lean-forward="true" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/FileUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="33" column="25" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/action/js/UploadStudentsInfoAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="129" column="45" selection-start-line="129" selection-start-column="45" selection-end-line="129" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/Word2Pdf.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-456">
+          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/action/android/UploadFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2376">
+          <caret line="661" column="96" selection-start-line="661" selection-start-column="96" selection-end-line="661" selection-end-column="96" />
+          <folding>
+            <element signature="method#uploadLedger#0;class#UploadFile#0" />
+            <element signature="method#getSecondLedger#0;class#UploadFile#0" />
+            <element signature="method#getUpdateInfo#0;class#UploadFile#0" />
+            <element signature="method#uploadCrashLogcat#0;class#UploadFile#0" />
+            <element signature="method#getCourse#0;class#UploadFile#0" />
+            <element signature="method#getSignRecord#0;class#UploadFile#0" />
+            <element signature="method#getFirstLedger#0;class#UploadFile#0" />
+            <element signature="method#uploadDiscussion#0;class#UploadFile#0" />
+            <element signature="method#getDiscussion#0;class#UploadFile#0" />
+            <element signature="method#updateDiscussionRead#0;class#UploadFile#0" />
+            <element signature="method#uploadASQC#0;class#UploadFile#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/action/android/MeAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5544">
+          <caret line="338" column="5" selection-start-line="338" selection-start-column="5" selection-end-line="338" selection-end-column="5" />
+          <folding>
+            <element signature="e#2698#2699#0" expanded="true" />
+            <element signature="e#2758#2759#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/action/android/ASCQ.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1176">
-          <caret line="2145" column="8" selection-start-line="2145" selection-start-column="8" selection-end-line="2145" selection-end-column="8" />
+        <state relative-caret-position="315">
+          <caret line="2161" column="1" selection-start-line="2161" selection-start-column="1" selection-end-line="2161" selection-end-column="1" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="method#getClazzStudents#0;class#ASCQ#0" />
             <element signature="method#applyMutual#0;class#ASCQ#0" />
             <element signature="method#cancelMutual#0;class#ASCQ#0" />
@@ -846,7 +896,16 @@
             <element signature="method#modifyASCQ#0;class#ASCQ#0" />
             <element signature="method#getMutualRecord#0;class#ASCQ#0" />
             <element signature="method#getMutualIDs#0;class#ASCQ#0" />
+            <element signature="method#getModifyASCQ#0;class#ASCQ#0" />
+            <element signature="method#updateASCQ#0;class#ASCQ#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/db/DBHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -909,6 +968,7 @@
             <option name="proportions">
               <list>
                 <option value="0.20804597" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

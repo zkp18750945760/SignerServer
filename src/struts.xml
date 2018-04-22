@@ -55,6 +55,7 @@
         <action name="GetCourse" class="action.android.MeAction" method="getCourse"/>
         <action name="GetSignRecord" class="action.android.MeAction" method="getSignRecord"/>
         <action name="GetFirstLedger" class="action.android.MeAction" method="getFirstLedger"/>
+        <action name="UploadDiscussion" class="action.android.MeAction" method="uploadDiscussion"/>
         <action name="GetDiscussion" class="action.android.MeAction" method="getDiscussion"/>
         <action name="UpdateDiscussionRead" class="action.android.MeAction" method="updateDiscussionRead"/>
         <action name="UploadASQC" class="action.android.MeAction" method="uploadASQC"/>

@@ -97,11 +97,6 @@ public class MeAction extends ActionSupport {
     private float radius;
 
     /**
-     * 第二台账文件
-     */
-    private File xls;
-
-    /**
      * 月份
      */
     private int month;
@@ -109,11 +104,6 @@ public class MeAction extends ActionSupport {
      * 年份
      */
     private int year;
-
-    /**
-     * 错误日志文件
-     */
-    private File logcat;
 
     /**
      * 支书会议主题
@@ -134,6 +124,43 @@ public class MeAction extends ActionSupport {
      * 学年 2017-2018
      */
     private String schoolYear;
+
+    /**
+     * 学期
+     */
+    private String term;
+    /**
+     * 摘要
+     */
+    private String Abstract;
+
+    private File uploadFile; //上传的文件
+    private String uploadFileContentType; //文件类型
+    private String uploadFileFileName; //文件名字
+
+    public File getUploadFile() {
+        return uploadFile;
+    }
+
+    public void setUploadFile(File uploadFile) {
+        this.uploadFile = uploadFile;
+    }
+
+    public String getUploadFileContentType() {
+        return uploadFileContentType;
+    }
+
+    public void setUploadFileContentType(String uploadFileContentType) {
+        this.uploadFileContentType = uploadFileContentType;
+    }
+
+    public String getUploadFileFileName() {
+        return uploadFileFileName;
+    }
+
+    public void setUploadFileFileName(String uploadFileFileName) {
+        this.uploadFileFileName = uploadFileFileName;
+    }
 
     public String getUserId() {
         return userId;
@@ -295,14 +322,6 @@ public class MeAction extends ActionSupport {
         this.radius = radius;
     }
 
-    public File getXls() {
-        return xls;
-    }
-
-    public void setXls(File xls) {
-        this.xls = xls;
-    }
-
     public int getMonth() {
         return month;
     }
@@ -317,14 +336,6 @@ public class MeAction extends ActionSupport {
 
     public void setYear(int year) {
         this.year = year;
-    }
-
-    public File getLogcat() {
-        return logcat;
-    }
-
-    public void setLogcat(File logcat) {
-        this.logcat = logcat;
     }
 
     public String getTheme() {
@@ -357,6 +368,22 @@ public class MeAction extends ActionSupport {
 
     public void setSchoolYear(String schoolYear) {
         this.schoolYear = schoolYear;
+    }
+
+    public String getTerm() {
+        return term;
+    }
+
+    public void setTerm(String term) {
+        this.term = term;
+    }
+
+    public String getAbstract() {
+        return Abstract;
+    }
+
+    public void setAbstract(String anAbstract) {
+        Abstract = anAbstract;
     }
 
     /**
@@ -393,6 +420,9 @@ public class MeAction extends ActionSupport {
         }
     }
 
+    /**
+     * 获取头像
+     */
     public void getHeadIcons() {
         System.out.println(userId + "请求获取头像");
         String headIcon = MeDB.getHeadIcon(userId);
@@ -723,7 +753,7 @@ public class MeAction extends ActionSupport {
      */
     public void uploadLedger() {
         System.out.println(userId + "上传" + month + "月第二台账");
-        String uploadLedger = UploadFile.uploadLedger(month, xls);
+        String uploadLedger = UploadFile.uploadLedger(month, uploadFile, uploadFileFileName);
         System.out.println("uploadLedger==" + uploadLedger);
 
         HttpServletResponse response = ServletActionContext.getResponse();
@@ -778,7 +808,7 @@ public class MeAction extends ActionSupport {
      */
     public void uploadCrashLogcat() {
         System.out.println("上传错误日志");
-        String uploadCrashLogcat = UploadFile.uploadCrashLogcat(logcat);
+        String uploadCrashLogcat = UploadFile.uploadCrashLogcat(uploadFile, uploadFileFileName);
 
         System.out.println(uploadCrashLogcat);
 
@@ -834,7 +864,7 @@ public class MeAction extends ActionSupport {
      */
     public void getFirstLedger() {
         System.out.println(userId + "请求第一台账");
-        String firstLedger = UploadFile.getFirstLedger(userId, userGrade, userMajor, userClazz);
+        String firstLedger = UploadFile.getFirstLedger(userId, userGrade, userMajor, userClazz, schoolYear, term);
 
         System.out.println(firstLedger);
 
@@ -849,11 +879,31 @@ public class MeAction extends ActionSupport {
     }
 
     /**
+     * 上传班长支书会议记录
+     */
+    public void uploadDiscussion() {
+        System.out.println(userId + "请求上传会议记录");
+        String uploadDiscussion = UploadFile.uploadDiscussion(uploadFile, uploadFileFileName, userId, schoolYear, term, content,
+                Abstract, userGrade, userMajor, userClazz);
+
+        System.out.println(uploadDiscussion);
+
+        HttpServletResponse response = ServletActionContext.getResponse();
+        try {
+            response.setCharacterEncoding("utf-8");
+            PrintWriter writer = response.getWriter();
+            writer.write(uploadDiscussion);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * 获取支书会议记录
      */
     public void getDiscussion() {
         System.out.println(userId + "请求获取支书会议记录");
-        String discussion = UploadFile.getDiscussion(userId);
+        String discussion = UploadFile.getDiscussion(userId, userGrade, userMajor, userClazz, schoolYear, term);
 
         System.out.println(discussion);
 
