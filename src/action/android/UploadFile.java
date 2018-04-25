@@ -709,13 +709,14 @@ public class UploadFile {
             //支书会议表已经存在
             //表格已经存在，直接将文件放入对应的位置并插入数据到数据库中
             String path = FileUtils.uploadFile(file, uploadFileFileName, "/pdf");
+            path = path + "\\" + uploadFileFileName;
 
-            if (uploadFileFileName.contains("doc")) {
-                path = Word2Pdf.word2Pdf(path + "\\" + uploadFileFileName, path + "\\" +
-                        uploadFileFileName.replace(uploadFileFileName.substring(uploadFileFileName.lastIndexOf(".") + 1), "pdf"));
-            } else {
-                path = path + "\\" + uploadFileFileName;
-            }
+//            if (uploadFileFileName.contains("doc")) {
+//                path = Word2Pdf.word2Pdf(path + "\\" + uploadFileFileName, path + "\\" +
+//                        uploadFileFileName.replace(uploadFileFileName.substring(uploadFileFileName.lastIndexOf(".") + 1), "pdf"));
+//            } else {
+//                path = path + "\\" + uploadFileFileName;
+//            }
 
             if (!path.equals("")) {
                 path = new File(path).getAbsolutePath();
@@ -725,7 +726,7 @@ public class UploadFile {
                         "values ('" + content + "','"
                         + TimeUtils.getCurrentDate() + "','"
                         + Abstract + "','"
-                        + ("/pdf/" + uploadFileFileName.replace(uploadFileFileName.substring(uploadFileFileName.lastIndexOf(".") + 1), "pdf")) + "','"
+                        + ("/pdf/" + uploadFileFileName) + "','"
                         + TimeUtils.getCurrentTime() + "'," +
                         "'" + schoolYear + "'," +
                         "'" + term + "'," +

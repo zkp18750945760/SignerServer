@@ -707,7 +707,7 @@ public class MeAction extends ActionSupport {
                 + latitude + ",精度："
                 + radius);
         String sign = MeDB.sign(userId, userGrade, userMajor, userClazz,
-                type, time, content, longitude, latitude, radius);
+                type, time, content, longitude, latitude, radius, stuSerialNo);
 
         System.out.println(sign);
 

@@ -52,10 +52,14 @@ public class MeDB {
                     resultSet.close();
                     dbHelper.close();
 
-                    sql = "update students set stuSerialNo = '" + stuSerialNo + "' where stuId = '" + userId + "'";
-                    dbHelper = new DBHelper(sql);
-                    dbHelper.pst.executeUpdate();
-                    dbHelper.close();
+                    //第一次登陆的时候绑定设备序列号
+                    if (resultSet.getString("stuSerialNo") == null ||
+                            resultSet.getString("stuSerialNo").equals("")) {
+                        sql = "update students set stuSerialNo = '" + stuSerialNo + "' where stuId = '" + userId + "'";
+                        dbHelper = new DBHelper(sql);
+                        dbHelper.pst.executeUpdate();
+                        dbHelper.close();
+                    }
 
                     hashMap.put("status", 200);
                     hashMap.put("time", TimeUtils.getCurrentTime());
@@ -1310,20 +1314,21 @@ public class MeDB {
     /**
      * 签到
      *
-     * @param userId    用户ID
-     * @param grade     年级
-     * @param major     专业
-     * @param clazz     班级
-     * @param type      类型(1---课程  2---会议)
-     * @param time      时间
-     * @param content   主题
-     * @param longitude 经度
-     * @param latitude  纬度
-     * @param radius    定位精度
-     * @return 200->成功 101->还未发起签到 102->不在教室范围内 103->已经签到过了 104->数据库IO错误 105->服务器无响应
+     * @param userId      用户ID
+     * @param grade       年级
+     * @param major       专业
+     * @param clazz       班级
+     * @param type        类型(1---课程  2---会议)
+     * @param time        时间
+     * @param content     主题
+     * @param longitude   经度
+     * @param latitude    纬度
+     * @param radius      定位精度
+     * @param stuSerialNo 设备序列号
+     * @return 200->成功 101->还未发起签到 102->不在教室范围内 103->已经签到过了 104->数据库IO错误 105->不是本机签到 106->服务器无响应
      */
     public static String sign(String userId, String grade, String major, String clazz, int type, String time,
-                              String content, double longitude, double latitude, float radius) {
+                              String content, double longitude, double latitude, float radius, String stuSerialNo) {
 
         HashMap<String, Object> hashMap = new HashMap<>();
 
@@ -1366,7 +1371,7 @@ public class MeDB {
                         double longitudeDB = Double.parseDouble(resultSet.getString("longitude"));
                         double latitudeDB = Double.parseDouble(resultSet.getString("latitude"));
                         float radiusDB = Float.parseFloat(resultSet.getString("radius"));
-                        if (radiusDB == 0.0f) {
+                        if (radiusDB < 100.0f) {
                             radiusDB = 100.0f;
                         }
                         double distance = MapUtils.distanceOfTwoPoints(latitudeDB, longitudeDB, latitude, longitude);
@@ -1378,53 +1383,70 @@ public class MeDB {
                         } else {
                             //在规定范围内，可以签到
 
-                            //查看用户是否已经签到
-                            sql = "select * from `" + tableName + "` where stuId = '" + userId + "'";
-                            DBHelper helper = new DBHelper(sql);
-                            ResultSet query = helper.pst.executeQuery();
-
-                            tabCount = 0;
-                            while (query.next()) {
-                                String signStatus =
-                                        query.getString(TimeUtils.getCurrentDate() + " " + SchoolYearUtils.getClassBeginTime(time));
-                                if (signStatus != null && !signStatus.equals("")) {
-                                    tabCount++;
-                                }
+                            //1.查看设备序列号是不是一致
+                            sql = "select stuSerialNo from students where stuId = '" + userId + "'";
+                            dbHelper = new DBHelper(sql);
+                            resultSet = dbHelper.pst.executeQuery();
+                            String stuSerialNoDB = "";
+                            while (resultSet.next()) {
+                                stuSerialNoDB = resultSet.getString("stuSerialNo");
                             }
-                            query.close();
-                            helper.close();
+                            resultSet.close();
+                            dbHelper.close();
 
-                            if (tabCount > 0) {
-                                //已经签到过了哦
-                                hashMap.put("status", 103);
-                                hashMap.put("time", TimeUtils.getCurrentTime());
-                                return JSON.toJSONString(hashMap);
-                            } else {
-                                //还未签到，可以签到
-                                //时间判断，准时/迟到
-                                long timeLag = TimeUtils.calculateTimeLag(SchoolYearUtils.getClassBeginTime(time), TimeUtils.getTimeSupreme());
-                                if (timeLag >= 0 && timeLag <= 600000) {
-                                    //准时
-                                    sql = "update `" + tableName + "` set `"
-                                            + TimeUtils.getCurrentDate() + " " + SchoolYearUtils.getClassBeginTime(time) + "` = 1 " +
-                                            "where stuId = '" + userId + "'";
+                            if (stuSerialNo.equals(stuSerialNoDB)) {
+                                //查看用户是否已经签到
+                                sql = "select * from `" + tableName + "` where stuId = '" + userId + "'";
+                                DBHelper helper = new DBHelper(sql);
+                                ResultSet query = helper.pst.executeQuery();
 
-                                } else if (timeLag < 0 && timeLag >= -300000) {
-                                    //迟到
-                                    sql = "update `" + tableName + "` set `"
-                                            + TimeUtils.getCurrentDate() + " " + SchoolYearUtils.getClassBeginTime(time) + "` = 2 " +
-                                            "where stuId = '" + userId + "'";
-                                } else if (timeLag < -300000) {
-                                    //旷课
-                                    sql = "update `" + tableName + "` set `"
-                                            + TimeUtils.getCurrentDate() + " " + SchoolYearUtils.getClassBeginTime(time) + "` = 3 " +
-                                            "where stuId = '" + userId + "'";
+                                tabCount = 0;
+                                while (query.next()) {
+                                    String signStatus =
+                                            query.getString(TimeUtils.getCurrentDate() + " " + SchoolYearUtils.getClassBeginTime(time));
+                                    if (signStatus != null && !signStatus.equals("")) {
+                                        tabCount++;
+                                    }
                                 }
-                                helper = new DBHelper(sql);
-                                helper.pst.executeUpdate();
+                                query.close();
                                 helper.close();
 
-                                hashMap.put("status", 200);
+                                if (tabCount > 0) {
+                                    //已经签到过了哦
+                                    hashMap.put("status", 103);
+                                    hashMap.put("time", TimeUtils.getCurrentTime());
+                                    return JSON.toJSONString(hashMap);
+                                } else {
+                                    //还未签到，可以签到
+                                    //时间判断，准时/迟到
+                                    long timeLag = TimeUtils.calculateTimeLag(SchoolYearUtils.getClassBeginTime(time), TimeUtils.getTimeSupreme());
+                                    if (timeLag >= 0 && timeLag <= 600000) {
+                                        //准时
+                                        sql = "update `" + tableName + "` set `"
+                                                + TimeUtils.getCurrentDate() + " " + SchoolYearUtils.getClassBeginTime(time) + "` = 1 " +
+                                                "where stuId = '" + userId + "'";
+
+                                    } else if (timeLag < 0 && timeLag >= -300000) {
+                                        //迟到
+                                        sql = "update `" + tableName + "` set `"
+                                                + TimeUtils.getCurrentDate() + " " + SchoolYearUtils.getClassBeginTime(time) + "` = 2 " +
+                                                "where stuId = '" + userId + "'";
+                                    } else if (timeLag < -300000) {
+                                        //旷课
+                                        sql = "update `" + tableName + "` set `"
+                                                + TimeUtils.getCurrentDate() + " " + SchoolYearUtils.getClassBeginTime(time) + "` = 3 " +
+                                                "where stuId = '" + userId + "'";
+                                    }
+                                    helper = new DBHelper(sql);
+                                    helper.pst.executeUpdate();
+                                    helper.close();
+
+                                    hashMap.put("status", 200);
+                                    hashMap.put("time", TimeUtils.getCurrentTime());
+                                    return JSON.toJSONString(hashMap);
+                                }
+                            } else {
+                                hashMap.put("status", 105);
                                 hashMap.put("time", TimeUtils.getCurrentTime());
                                 return JSON.toJSONString(hashMap);
                             }
@@ -1472,7 +1494,7 @@ public class MeDB {
                         double longitudeDB = Double.parseDouble(resultSet.getString("longitude"));
                         double latitudeDB = Double.parseDouble(resultSet.getString("latitude"));
                         float radiusDB = Float.parseFloat(resultSet.getString("radius"));
-                        if (radiusDB == 0.0f) {
+                        if (radiusDB < 100.0f) {
                             radiusDB = 100.0f;
                         }
                         double distance = MapUtils.distanceOfTwoPoints(latitudeDB, longitudeDB, latitude, longitude);
@@ -1484,51 +1506,68 @@ public class MeDB {
                         } else {
                             //在规定的距离范围内，可以签到
 
-                            //判断用户是否签到过了
-                            sql = "select * from `" + tableName + "` where userId = '" + userId + "'";
-                            DBHelper helper = new DBHelper(sql);
-                            ResultSet query = helper.pst.executeQuery();
-
-                            tabCount = 0;
-                            while (query.next()) {
-                                String signStatus = query.getString("signStatus");
-                                if (signStatus != null && !signStatus.equals("")) {
-                                    tabCount++;
-                                }
+                            //1.查看设备序列号是不是一致
+                            sql = "select stuSerialNo from students where stuId = '" + userId + "'";
+                            dbHelper = new DBHelper(sql);
+                            resultSet = dbHelper.pst.executeQuery();
+                            String stuSerialNoDB = "";
+                            while (resultSet.next()) {
+                                stuSerialNoDB = resultSet.getString("stuSerialNo");
                             }
-                            query.close();
-                            helper.close();
+                            resultSet.close();
+                            dbHelper.close();
 
-                            if (tabCount > 0) {
-                                //已经签到过了
-                                hashMap.put("status", 103);
-                                hashMap.put("time", TimeUtils.getCurrentTime());
-                                return JSON.toJSONString(hashMap);
-                            } else {
-                                //还未签到，可以签到
-                                //时间判断，准时/迟到
-                                long timeLagMeet = TimeUtils.calculateTimeLagMeet(time,
-                                        TimeUtils.getCurrentTime());
-                                if (timeLagMeet >= 0 && timeLagMeet <= 900000) {
-                                    //准时
-                                    sql = "update `" + tableName + "` set signStatus = '1',signTime = '"
-                                            + TimeUtils.getCurrentTime() + "' where userId = '" + userId + "'";
+                            if (stuSerialNo.equals(stuSerialNoDB)) {
+                                //判断用户是否签到过了
+                                sql = "select * from `" + tableName + "` where userId = '" + userId + "'";
+                                DBHelper helper = new DBHelper(sql);
+                                ResultSet query = helper.pst.executeQuery();
 
-                                } else if (timeLagMeet < 0 && timeLagMeet >= -600000) {
-                                    //迟到
-                                    sql = "update `" + tableName + "` set signStatus = '2',signTime = '"
-                                            + TimeUtils.getCurrentTime() + "' where userId = '" + userId + "'";
-
-                                } else if (timeLagMeet < -600000) {
-                                    //旷课
-                                    sql = "update `" + tableName + "` set signStatus = '3',signTime = '"
-                                            + TimeUtils.getCurrentTime() + "' where userId = '" + userId + "'";
+                                tabCount = 0;
+                                while (query.next()) {
+                                    String signStatus = query.getString("signStatus");
+                                    if (signStatus != null && !signStatus.equals("")) {
+                                        tabCount++;
+                                    }
                                 }
-                                helper = new DBHelper(sql);
-                                helper.pst.executeUpdate();
+                                query.close();
                                 helper.close();
 
-                                hashMap.put("status", 200);
+                                if (tabCount > 0) {
+                                    //已经签到过了
+                                    hashMap.put("status", 103);
+                                    hashMap.put("time", TimeUtils.getCurrentTime());
+                                    return JSON.toJSONString(hashMap);
+                                } else {
+                                    //还未签到，可以签到
+                                    //时间判断，准时/迟到
+                                    long timeLagMeet = TimeUtils.calculateTimeLagMeet(time,
+                                            TimeUtils.getCurrentTime());
+                                    if (timeLagMeet >= 0 && timeLagMeet <= 900000) {
+                                        //准时
+                                        sql = "update `" + tableName + "` set signStatus = '1',signTime = '"
+                                                + TimeUtils.getCurrentTime() + "' where userId = '" + userId + "'";
+
+                                    } else if (timeLagMeet < 0 && timeLagMeet >= -600000) {
+                                        //迟到
+                                        sql = "update `" + tableName + "` set signStatus = '2',signTime = '"
+                                                + TimeUtils.getCurrentTime() + "' where userId = '" + userId + "'";
+
+                                    } else if (timeLagMeet < -600000) {
+                                        //旷课
+                                        sql = "update `" + tableName + "` set signStatus = '3',signTime = '"
+                                                + TimeUtils.getCurrentTime() + "' where userId = '" + userId + "'";
+                                    }
+                                    helper = new DBHelper(sql);
+                                    helper.pst.executeUpdate();
+                                    helper.close();
+
+                                    hashMap.put("status", 200);
+                                    hashMap.put("time", TimeUtils.getCurrentTime());
+                                    return JSON.toJSONString(hashMap);
+                                }
+                            } else {
+                                hashMap.put("status", 105);
                                 hashMap.put("time", TimeUtils.getCurrentTime());
                                 return JSON.toJSONString(hashMap);
                             }
@@ -1537,12 +1576,12 @@ public class MeDB {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-                hashMap.put("status", 103);
+                hashMap.put("status", 104);
                 hashMap.put("time", TimeUtils.getCurrentTime());
                 return JSON.toJSONString(hashMap);
             }
         }
-        hashMap.put("status", 104);
+        hashMap.put("status", 106);
         hashMap.put("time", TimeUtils.getCurrentTime());
         return JSON.toJSONString(hashMap);
     }

@@ -266,7 +266,7 @@ public class ASCQ {
      * @param userMajor 邀请人专业
      * @param userClazz 邀请人班级
      * @param mutualId  被邀请人ID
-     * @return 200->成功 101->互评表不存在 102->数据库IO错误
+     * @return 200->成功 101->互评表不存在 102->数据库IO错误 103->班长必须是互评小组成员
      */
     public static String cancelMutual(String userId, String userGrade, String userMajor, String userClazz, String mutualId) {
         HashMap<String, Object> hashMap = new HashMap<>();
@@ -293,14 +293,31 @@ public class ASCQ {
                 hashMap.put("time", TimeUtils.getCurrentTime());
                 return JSON.toJSONString(hashMap);
             } else {
-                sql = "delete from Mutual where mutualCode = '" + mutualCode + "' and mutualId = '" + mutualId + "'";
+                //如果这个人是班长自己就不能取消邀请
+                sql = "select stuDuty from students where stuId = '" + mutualId + "'";
                 dbHelper = new DBHelper(sql);
-                dbHelper.pst.executeUpdate();
+                resultSet = dbHelper.pst.executeQuery();
+                String stuDuty = "";
+                while (resultSet.next()) {
+                    stuDuty = resultSet.getString("stuDuty");
+                }
+                resultSet.close();
                 dbHelper.close();
 
-                hashMap.put("status", 200);
-                hashMap.put("time", TimeUtils.getCurrentTime());
-                return JSON.toJSONString(hashMap);
+                if (stuDuty.equals("班长")) {
+                    hashMap.put("status", 103);
+                    hashMap.put("time", TimeUtils.getCurrentTime());
+                    return JSON.toJSONString(hashMap);
+                } else {
+                    sql = "delete from Mutual where mutualCode = '" + mutualCode + "' and mutualId = '" + mutualId + "'";
+                    dbHelper = new DBHelper(sql);
+                    dbHelper.pst.executeUpdate();
+                    dbHelper.close();
+
+                    hashMap.put("status", 200);
+                    hashMap.put("time", TimeUtils.getCurrentTime());
+                    return JSON.toJSONString(hashMap);
+                }
             }
 
         } catch (SQLException e) {
@@ -1013,6 +1030,55 @@ public class ASCQ {
                 hashMap.put("time", TimeUtils.getCurrentTime());
                 return JSON.toJSONString(hashMap);
             } else {
+                //获取该学年第二台账的前10%，判断当前用户的互评得分是不是要加上0.5分
+                sql = "select ceil(count(stuId) / 5) as totalStudent from students where (stuGrade,stuMajor,stuClass) " +
+                        "in ((select stuGrade,stuMajor,stuClass from students where stuId = '" + userId + "'))";
+                dbHelper = new DBHelper(sql);
+                resultSet = dbHelper.pst.executeQuery();
+                int totalStudent = 5;
+                while (resultSet.next()) {
+                    totalStudent = resultSet.getInt("totalStudent");
+                }
+                resultSet.close();
+                dbHelper.close();
+
+                System.out.println("totalStudent==" + totalStudent);
+
+                sql = "select @rownum:=@rownum+1 as rownum,if(@total=total,@rank,@rank:=@rownum) as rank,@total:=total,stuId,A.* " +
+                        "from(select stuId," +
+                        "sum(count) as total " +
+                        "from secondledger " +
+                        "where (stuId) in " +
+                        "((select stuId from students " +
+                        "where (stuGrade,stuMajor,stuClass) in ((select stuGrade,stuMajor,stuClass from students where stuId = '" + userId + "')))) " +
+                        "group by stuId order by total desc)A,(select @rank:=0,@rownum:=0,@total:=null)B;";
+
+                dbHelper = new DBHelper(sql);
+                resultSet = dbHelper.pst.executeQuery();
+
+                int rank = 0;
+                int rankAscq = 1;
+
+                while (resultSet.next()) {
+                    if (resultSet.getInt("rownum") == totalStudent) {
+                        rank = resultSet.getInt("rank");
+                    }
+
+                    if (resultSet.getString("stuId").equals(ascqBean.getUserId())) {
+                        rankAscq = resultSet.getInt("rank");
+                    }
+                }
+                resultSet.close();
+                dbHelper.close();
+
+                System.out.println("rankAscq==" + rankAscq + ",rank==" + rank);
+
+                float genresMutual = ascqBean.getGenres().getGenresMutual();
+
+                if (rankAscq <= rank) {
+                    genresMutual += 0.5f;
+                }
+
                 //该条学生的数据还不存在，直接插入数据库中
                 sql = "insert into CheckedASCQ(checkedStuId,stuId,schoolYear,time,checkedTime,moral1,moral2,moral3,moral4,moral5,moral6," +
                         "moralSelf,moralMutual,GPA,witSelf,witMutual,level,sportsSelf,sportsMutual," +
@@ -1060,7 +1126,7 @@ public class ASCQ {
                         "'" + ascqBean.getGenres().getGenres4() + "'," +
                         "'" + ascqBean.getGenres().getGenres5() + "'," +
                         "'" + ascqBean.getGenres().getGenresSelf() + "'," +
-                        "'" + ascqBean.getGenres().getGenresMutual() + "'," +
+                        "'" + genresMutual + "'," +
                         "'" + ascqBean.getTeam().getTeamBasic().isTeamBasic1() + "'," +
                         "'" + ascqBean.getTeam().getTeamBasic().isTeamBasic2() + "'," +
                         "'" + ascqBean.getTeam().getTeamBasic().isTeamBasic3() + "'," +
@@ -2076,6 +2142,50 @@ public class ASCQ {
                     hashMap.put("time", TimeUtils.getCurrentTime());
                     return JSON.toJSONString(hashMap);
                 } else {
+                    //获取该学年第二台账的前10%，判断当前用户的互评得分是不是要加上0.5分
+                    sql = "select ceil(count(stuId) / 5) as totalStudent from students where (stuGrade,stuMajor,stuClass) " +
+                            "in ((select stuGrade,stuMajor,stuClass from students where stuId = '" + ASCQBean.getData().get(0).getStuId() + "'))";
+                    dbHelper = new DBHelper(sql);
+                    resultSet = dbHelper.pst.executeQuery();
+                    int totalStudent = 5;
+                    while (resultSet.next()) {
+                        totalStudent = resultSet.getInt("totalStudent");
+                    }
+                    resultSet.close();
+                    dbHelper.close();
+
+                    sql = "select @rownum:=@rownum+1 as rownum,if(@total=total,@rank,@rank:=@rownum) as rank,@total:=total,stuId,A.* " +
+                            "from(select stuId," +
+                            "sum(count) as total " +
+                            "from secondledger " +
+                            "where (stuId) in " +
+                            "((select stuId from students " +
+                            "where (stuGrade,stuMajor,stuClass) in " +
+                            "((select stuGrade,stuMajor,stuClass from students where stuId = '"
+                            + ASCQBean.getData().get(0).getStuId() + "')))) " +
+                            "group by stuId order by total desc)A,(select @rank:=0,@rownum:=0,@total:=null)B;";
+
+                    dbHelper = new DBHelper(sql);
+                    resultSet = dbHelper.pst.executeQuery();
+
+                    int rank = 0;
+                    int rankAscq = 1;
+
+                    while (resultSet.next()) {
+                        if (resultSet.getInt("rownum") == totalStudent) {
+                            rank = resultSet.getInt("rank");
+                        }
+
+                        if (resultSet.getString("stuId").equals(ASCQBean.getData().get(0).getStuId())) {
+                            rankAscq = resultSet.getInt("rank");
+                        }
+                    }
+                    resultSet.close();
+                    dbHelper.close();
+
+                    if (rankAscq <= rank) {
+                        ASCQBean.getData().get(0).getGenres().setGenresMutual(ASCQBean.getData().get(0).getGenres().getGenresMutual() + 0.5f);
+                    }
                     //该条记录存在数据中，更新数据
                     sql = "replace into CheckedASCQ(stuId,checkedStuId,schoolYear,time,moral1,moral2,moral3,moral4,moral5,moral6," +
                             "moralSelf,moralMutual,GPA,witSelf,witMutual,level,sportsSelf,sportsMutual," +
